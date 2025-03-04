@@ -63,4 +63,27 @@ void List::append(int d){
 	size++;
 }
 
-//Write List::remove() here
+void List::remove(int idx) {
+    if (idx < 0 || idx >= size) {
+        cout << "Index out of bounds!\n";
+        return;
+    }
+
+    Node *temp = nullptr;
+
+    if (idx == 0) {
+        temp = root;
+        root = root->next;
+    } else {
+        Node *current = root;
+        for (int i = 0; i < idx - 1; i++) {
+            current = current->next;
+        }
+        temp = current->next;
+        current->next = temp->next;
+    }
+
+    delete temp;
+    size--;
+}
+
